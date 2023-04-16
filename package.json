@@ -1,6 +1,7 @@
 {
-  "version": "0.1.0",
-  "license": "MIT",
+  "name": "chainedcss",
+  "version": "0.1.1",
+  "license": "UNLICENSED",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -30,7 +31,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "chainedcss",
   "author": "Adomas Gaudiesius",
   "module": "dist/chainedcss.esm.js",
   "size-limit": [
