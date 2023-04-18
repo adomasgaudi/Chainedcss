@@ -81,7 +81,6 @@ import { _ } from 'chainedcss';
 
 const Component = () => {
   return (
-    // prettier-ignore
     <h1 {..._.fontRed400().border().px4().py2()}>Hello</h1>
   );
 };
@@ -97,7 +96,6 @@ export default Component;
 ```js
 const paddingX = 4;
 return (
-  // prettier-ignore
   <h1 {..._.fontRed400().border().px(paddingX).py(2)}>Hello</h1>
 );
 ```
@@ -108,7 +106,6 @@ return (
 
 ```js
 return (
-  // prettier-ignore
   <h1 {..._.px`10%`.py('5vh')}>Hello</h1>
 );
 ```
@@ -121,7 +118,6 @@ return (
 const paddingStyles = () => _.p3().px`10vw`;
 const Component = () => {
   return (
-    // prettier-ignore
     <h1 {...paddingStyles()}>Hello</h1>
   );
 ```
