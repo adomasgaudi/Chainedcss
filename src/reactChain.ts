@@ -11,6 +11,8 @@ const allCommands = [
   ...customCommandsArray,
 ];
 
+//logic
+const addStyleLogic = (editedStyle: any) => editedStyle ? ` ${editedStyle};` : ''
 class OssomClass {
   css: any;
   o: any;
@@ -20,7 +22,7 @@ class OssomClass {
     this.o = { s: '', f: () => '' };
 
     self.__proto__.style = (cssStyle: any) => {
-      self.o.s += cssStyle ? ` ${cssStyle};` : '';
+      self.o.s += addStyleLogic(cssStyle)
       self.o.f = () => self.o.s;
       self.css = css`
         ${self.o.s}
