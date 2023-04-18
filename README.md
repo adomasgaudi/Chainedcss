@@ -3,22 +3,38 @@
     <h1 align="center">ChainedCSS</h1>
   </a>
 </p>
-
 <p align="center">
     Minimalistic <strong>Method Chaining CSS</strong> - TailwindStyle
+<br/>
     <a href="https://github.com/adomasgaudi/Chainedcss">github</a>
     <a href="https://www.npmjs.com/package/chainedcss">npm</a>
 </p>
 
 ---
 
-## Instalation
+# Installation
 
-Install with
+<br>
+Currently, ChainedCSS works only with emotion.js
+<br>
+Install these packages:
+<br>
 
 ```js
+// for npm
 npm i chainedcss @emotion/react @emotion/css
+
+// for yarn
+yarn add chainedcss @emotion/react @emotion/css
+
+// for pnpm
+pnpm add chainedcss @emotion/react @emotion/css
 ```
+
+<br>
+<br>
+
+## Usage for React and Next (up to Next.js 12)
 
 At the top of every component
 
@@ -27,9 +43,37 @@ At the top of every component
 import { _ } from 'chainedcss';
 ```
 
-in next13 make sure to "use client" and not in the root component - app.tsx ( might only aply if you're using the app dir)
+<br>
+<br>
 
-Style jsx elements using Tailwind classes:
+## Use with Next 13 App directory
+
+If you're using next 13, make sure to add "use client" at the top and not in the root component - app.tsx, only in the child components of root. ( might only aply if you're using the app dir)
+
+```js
+'use client';
+/** @jsxImportSource @emotion/react */
+import { _ } from 'chainedcss';
+```
+
+<br>
+<br>
+
+# Rationale
+
+**✨ You already know how to use it** - for the majority of basic styles ChainedCSS uses identical styling to Tailwind, to make sure users don't have to relearn everything again.
+
+**✨ The power of objects and methods** - utilise the full power of js using objects and methods. Flexibility and Programability, far beyond css.
+
+**✨ Clean minimalistic look** - ChainedCSS avoids all uneccesary symbols and extra code to bring css in js as close as possible to Tailwind css. CSS is too long, we've come to realise this after Tailwind became so popular. JSS, CSS in JS is even worse. ChainedCSS fixes this.
+
+**✨ Custom functions** - Tailwind only has pre-determined classes. Is that a bug or a feature? If you thinks that is a feature then use ChainedCSS styles which are basically the same, however if the user wants to, she can customize many of them, because they are functions and can receive an input.
+
+<br>
+
+# Get Started
+
+**✨ Use Tailwind-ish styles** - for the majority of basic styles ChainedCSS uses identical styling to Tailwind, to make sure users don't have to relearn everything again.
 
 ```js
 /** @jsxImportSource @emotion/react */
@@ -37,113 +81,47 @@ import { _ } from 'chainedcss';
 
 const Component = () => {
   return (
-    <h1
-      {..._.fontRed400()
-        .border()
-        .px4()
-        .py2()
-        .bgGreen200()}
-    ></h1>
+    // prettier-ignore
+    <h1 {..._.fontRed400().border().px4().py2()}>Hello</h1>
   );
 };
+
+export default Component;
 ```
 
-Nest Twin’s `tw` import within a css prop to add conditional styles:
+<br>
+<br>
+
+**✨ Use numbers and variables in the styles functions**
 
 ```js
-import tw from 'twin.macro';
-
-const Input = ({ hasHover }) => (
-  <input css={[tw`border`, hasHover && tw`hover:border-black`]} />
+const paddingX = 4;
+return (
+  // prettier-ignore
+  <h1 {..._.fontRed400().border().px(paddingX).py(2)}>Hello</h1>
 );
 ```
 
-Or mix sass styles with the css import:
+<br>
+
+**✨ Use backticks `` for cleaner function syntax** - string are interpolated into the css, so you can use any valid css.
 
 ```js
-import tw, { css } from 'twin.macro';
-
-const hoverStyles = css`
-  &:hover {
-    border-color: black;
-    ${tw`text-black`}
-  }
-`;
-const Input = ({ hasHover }) => (
-  <input css={[tw`border`, hasHover && hoverStyles]} />
+return (
+  // prettier-ignore
+  <h1 {..._.px`10%`.py('5vh')}>Hello</h1>
 );
 ```
 
-### Styled Components
+<br>
 
-You can also use the tw import to create and style new components:
-
-```js
-import tw from 'twin.macro';
-
-const Input = tw.input`border hover:border-black`;
-```
-
-And clone and style existing components:
+**✨ Define styles wherever confortable**
 
 ```js
-const PurpleInput = tw(Input)`border-purple-500`;
+const paddingStyles = () => _.p3().px`10vw`;
+const Component = () => {
+  return (
+    // prettier-ignore
+    <h1 {...paddingStyles()}>Hello</h1>
+  );
 ```
-
-Switch to the styled import to add conditional styling:
-
-```js
-import tw, { styled } from 'twin.macro';
-
-const StyledInput = styled.input(({ hasBorder }) => [
-  `color: black;`,
-  hasBorder && tw`border-purple-500`,
-]);
-const Input = () => <StyledInput hasBorder />;
-```
-
-Or use backticks to mix with sass styles:
-
-```js
-import tw, { styled } from 'twin.macro';
-
-const StyledInput = styled.input`
-  color: black;
-  ${({ hasBorder }) => hasBorder && tw`border-purple-500`}
-`;
-const Input = () => <StyledInput hasBorder />;
-```
-
-## How it works
-
-When babel runs over your javascript or typescript files at compile time, twin grabs your classes and converts them into css objects.
-These css objects are then passed into your chosen css-in-js library without the need for an extra client-side bundle:
-
-```js
-import tw from 'twin.macro'
-
-tw`text-sm md:text-lg`
-
-// ↓ ↓ ↓ ↓ ↓ ↓
-
-{
-  fontSize: '0.875rem',
-  '@media (min-width: 768px)': {
-    fontSize: '1.125rem',
-  },
-}
-```
-
-## Features
-
-**👌 Simple imports** - Twin collapses imports from common styling libraries into a single import:
-
-```diff
-- import styled from '@emotion/styled'
-- import css from '@emotion/react'
-+ import { styled, css } from 'twin.macro'
-```
-
-**🐹 Adds no size to your build** - Twin converts the classes you’ve used into css objects using Babel and then compiles away, leaving no runtime code
-
-**🍱 Apply variants to multiple classes at once with variant groups**
