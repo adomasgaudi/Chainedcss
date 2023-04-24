@@ -1,4 +1,4 @@
-import { createCommandBasic, createCommandCustom, createCommandMedia, createCommandSize } from "./createCommand";
+import { createCommandBasic, createCommandCustom, createCommandMedia, createCommandSize, createCommandTemp } from "./createCommand";
 
 const sizesCommandsArray: any = [];
 
@@ -37,7 +37,8 @@ sizesCommandsArray.push(
 );
 
 sizesCommandsArray.push(
-  createCommandSize('w', 'width'),
+  createCommandTemp('w', 'width'),
+  // createCommandSize('w', 'width'),
   createCommandSize('h', 'height'),
   createCommandSize('minH', 'min-height'),
   createCommandSize('minW', 'min-width'),

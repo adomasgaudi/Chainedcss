@@ -16,4 +16,7 @@ otherCommandsArray.push(
   createCommandCustom('zIndex', (x: any) => `z-index: ${x}`),
 );
 
+otherCommandsArray.push(
+  createCommandCustom('transition', (x: any) => `transition: ${x}`),
+)
 export { otherCommandsArray };
