@@ -1,0 +1,23 @@
+/*=== Trigger  ===*/
+.animate
+  animation-duration: 1s
+  animation-fill-mode: both
+
+/*=== Optional Delays, change values here  ===*/
+.one
+  animation-delay: 0s
+
+/*==== FADE IN UP ===*/
+
+@keyframes fadeInUp
+  from
+    opacity: 0
+    transform: translateY(50px)
+
+  to
+    opacity: 1
+    transform: none
+
+.fadeInUp
+  @extend .animate !optional
+  animation-name: fadeInUp

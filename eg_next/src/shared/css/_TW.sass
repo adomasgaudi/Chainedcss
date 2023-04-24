@@ -1,0 +1,57 @@
+
+@tailwind base
+@tailwind components
+@tailwind utilities
+
+@layer base
+  .hero
+    @apply font-[800] text-3xl md:text-4xl lg:text-[64px] lg:leading-[1]
+
+  .h_2
+    @apply font-[800] text-2xl md:text-3xl lg:text-4xl lg:leading-[1]
+  // mid - button/anchor
+  .cap
+    @apply text-[14px] tracking-[.2em]
+  .cap_thin
+    @extend .cap !optional
+    @apply font-[400] text-gray-500
+  .cap_thick
+    @extend .cap !optional
+    @apply font-[900] text-gray-800
+
+  .h_3
+    @apply text-2xl font-[900] mb-5 mt-20
+  // mid reading text
+  .p
+    @apply text-base md:text-lg lg:leading-[160%] font-[400]
+
+  .p_sm
+    @apply text-sm md:text-sm font-[500] lg:leading-[160%]
+
+  .p_xl
+    @apply text-base md:text-lg lg:text-xl lg:leading-[160%] font-[400] text-[#445577]
+
+  .p_tag
+    @apply text-base md:text-base lg:text-lg font-[600] text-blue-600 lg:leading-[160%]
+
+  // button fonts
+  .p_btn_1
+    @apply text-sm md:text-base md:font-[600]
+
+  .p_btn_2
+    @apply text-sm md:text-base md:font-[600]
+
+  // space 
+  .mb_2
+    @apply mb-2 md:mb-4 lg:mb-6
+
+  .mb_3
+    @apply mb-3 md:mb-6 lg:mb-8
+
+@layer base
+  .container
+    width: 100%
+
+  @media (min-width: 425px)
+    .container
+      max-width: 425px

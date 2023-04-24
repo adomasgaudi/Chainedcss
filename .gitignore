@@ -4,4 +4,5 @@ node_modules
 .cache
 dist
 eg_cra
-eg_next
+eg_cra/node_modules
+eg_next/node_modules
