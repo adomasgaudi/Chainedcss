@@ -1,23 +1,7 @@
+import { createCommandBasic, createCommandCustom, createCommandMedia, createCommandSize } from "./createCommand";
+
 const sizesCommandsArray: any = [];
 
-
-const createCommandSize = (ccssName: string, cssRule: string) => ({
-  name: ccssName,
-  func: (x: string | number) => (typeof x === 'number' || /^\d+$/.test(x)) ? `${cssRule}: ${x}px` : `${cssRule}: ${x}`,
-});
-
-const createCommandBasic = (name: string, cssRule: string) => ({
-  name: name,
-  func: () => cssRule,
-});
-const createCommandMedia = (name: string, size: string) => ({
-  name: name,
-  func: (x: any) => `@media (min-width: ${size}px) {${x};}`,
-});
-
-const createCommandCustom = (name: string, func: any) => ({
-  name, func
-});
 
 
 const sizes: any = [

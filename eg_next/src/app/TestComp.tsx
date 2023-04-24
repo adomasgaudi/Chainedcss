@@ -6,7 +6,7 @@ import { _ } from 'chainedcss';
 const TestComp = () => (
   <div>
     <Link href="/about">helo link</Link>
-    <h1 {..._.bgRed500()}>CHAINS</h1>
+    <h1 {..._.bgRed500``.border``}>CHAINS</h1>
   </div>
 );
 
