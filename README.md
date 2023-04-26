@@ -82,6 +82,9 @@ import { _ } from 'chainedcss';
 const Component = () => {
   return (
     <h1 {..._.fontRed400().border().px4().py2()}>Hello</h1>
+    <h1 {..._.fontRed400().border().px(4).py(2)}>Hello</h1>
+    <h1 {..._.fontRed400``.border``.px4``.py2``}>Hello</h1>
+    <h1 {..._.fontRed400``.border``.px`4`.py`2`}>Hello</h1>
   );
 };
 
@@ -90,26 +93,57 @@ export default Component;
 
 <br>
 <br>
+<br>
 
-**✨ Use numbers and variables in the styles functions**
+**✨ Use numbers and variables in the styles functions or just add the value to the name like in tailwind**
 
 ```js
 const paddingX = 4;
 return (
-  <h1 {..._.fontRed400().border().px(paddingX).py(2)}>Hello</h1>
+  <h1 {..._.fontRed400().border().px(paddingX).py(2).my2()}>Hello</h1>
 );
 ```
 
 <br>
+<br>
+<br>
 
-**✨ Use backticks `` for cleaner function syntax** - string are interpolated into the css, so you can use any valid css.
+**✨ Use backticks `` for cleaner function syntax** - string are interpolated into the css, so you can use any valid css. Use backticks as if they were a normal function (not tag function). 
+
+
 
 ```js
 return (
-  <h1 {..._.px`10%`.py('5vh')}>Hello</h1>
+  <h1 {..._.fontRed400``.border``.px4``.py2``}>Hello</h1>
+)
+ 
+```
+
+```js 
+// equivatent writing
+
+const size = 10
+return (
+  <div {..._.m(`-${size}%`)}/> // margin: -10%
+  <div {..._.m`-${size}%`}/> // margin: -10%
+)
+
+ // not
+ // margin: [['-', '%'], 10]
+
+```
+
+```js
+// more examples
+const size = 10;
+return (
+  <h1 {..._.px`10%`.py`5vh`}>Hello</h1>
+  <div {...m`-${size}vh`.border``}/>
 );
 ```
 
+<br>
+<br>
 <br>
 
 **✨ Define styles wherever confortable**
@@ -120,4 +154,5 @@ const Component = () => {
   return (
     <h1 {...paddingStyles()}>Hello</h1>
   );
+}
 ```

@@ -37,14 +37,14 @@ const createCommandTemp = (ccssName: any, cssRule: any) => ({
   func: function (oldargs: any) {
     const argsArray = Array.from(arguments);
     const isNumerical = (x: any) => (typeof x === 'number' || /^\d+$/.test(x))
-    const addPixelsIfNumber = (x: any) => isNumerical(x) ? `${x}px` : `x`
+    const addPixelsIfNumber = (x: any) => isNumerical(x) ? `${x}px` : x
 
     if (!Array.isArray(oldargs)) {
       return `${cssRule}: ${addPixelsIfNumber(oldargs)} `;
     }
     else {
       const recollectedString = recollectTagFunction([argsArray[0], ...argsArray.slice(1)])
-      return `${cssRule}: ${recollectedString}`;
+      return `${cssRule}: ${addPixelsIfNumber(recollectedString)}`;
     }
 
   },
