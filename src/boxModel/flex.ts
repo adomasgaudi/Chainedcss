@@ -1,14 +1,14 @@
+import { createCommandBasic } from "./createCommand";
+
 const flexCommandsArray: any = [];
-flexCommandsArray.push({
-  name: `flex`,
-  func: () => `display: flex`,
-});
-flexCommandsArray.push({
-  name: `flexRow`,
-  func: () => `flex-direction: row`,
-});
-flexCommandsArray.push({
-  name: `justifyCenter`,
-  func: () => `justify-content: center`,
-});
+
+
+flexCommandsArray.push(
+  createCommandBasic('flex', 'display: flex'),
+  createCommandBasic('flexRow', 'flex-direction: row'),
+  createCommandBasic('justifyCenter', 'justify-content: center'),
+  createCommandBasic('justifyBetween', 'justify-content: space-between'),
+  createCommandBasic('justifyAround', 'justify-content: space-around'),
+)
+
 export { flexCommandsArray };

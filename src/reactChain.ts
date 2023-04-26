@@ -35,8 +35,8 @@ class OssomClass {
 
     //add all styles
     allCommands.forEach((item: any) => {
-      self.__proto__[item.name] = (pass?: any) => {
-        self.__proto__.style(item.func(pass));
+      self.__proto__[item.name] = (...pass: any) => {
+        self.__proto__.style(item.func(...pass));
         return self;
       };
     });
@@ -58,8 +58,8 @@ class OSSClass {
 
     //add all styles
     allCommands.forEach((item: any) => {
-      self.__proto__[item.name] = (pass?: any) => {
-        self.__proto__.style(item.func(pass));
+      self.__proto__[item.name] = (...pass: any) => {
+        self.__proto__.style(item.func(...pass));
         return self;
       };
     });
@@ -74,8 +74,8 @@ const __: any = {};
 
 // create a new instance of Ossom with a style
 allCommands.forEach((command: any) => {
-  _[command.name] = (pass: string) => new Ossom(command.func(pass));
-  __[command.name] = (pass: string) => new OSS(command.func(pass));
+  _[command.name] = (...pass: any) => new Ossom(command.func(...pass));
+  __[command.name] = (...pass: any) => new OSS(command.func(...pass));
 });
 _.blank = () => new Ossom('');
 _.style = (style: any) => new Ossom(style);
