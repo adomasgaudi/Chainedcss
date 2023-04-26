@@ -1,3 +1,19 @@
+const recollectTagFunction = (inputArray: any[]) => {
+  const strings = inputArray[0];
+  const args = inputArray.slice(1);
+  let result = '';
+
+  strings.forEach((string: any, i: any) => {
+    result += string;
+    if (args[i] !== undefined) {
+      result += args[i];
+    }
+  });
+
+  return result;
+};
+
+
 
 const createCommandBasic = (name: string, cssRule: string) => ({
   name: name,
@@ -18,18 +34,19 @@ const createCommandSize = (ccssName: string, cssRule: string) => ({
 // with template literals
 const createCommandTemp = (ccssName: any, cssRule: any) => ({
   name: ccssName,
-  func: (...oldargs: any): any => {
-    const args = [...oldargs]
-    const numArgs = args.length;
-    console.log('numArgs', numArgs, args);
+  func: function (oldargs: any) {
+    const argsArray = Array.from(arguments);
+    const isNumerical = (x: any) => (typeof x === 'number' || /^\d+$/.test(x))
+    const addPixelsIfNumber = (x: any) => isNumerical(x) ? `${x}px` : `x`
 
-    if (!Array.isArray(args)) {
-      const x = args[0];
-      return (typeof x === 'number' || /^\d+$/.test(x)) ? `${cssRule}: ${x}px` : `${cssRule}: ${x}`;
-    } else {
-      const x = args.join('');
-      return `${cssRule}: ${x}`;
+    if (!Array.isArray(oldargs)) {
+      return `${cssRule}: ${addPixelsIfNumber(oldargs)} `;
     }
+    else {
+      const recollectedString = recollectTagFunction([argsArray[0], ...argsArray.slice(1)])
+      return `${cssRule}: ${recollectedString}`;
+    }
+
   },
 });
 

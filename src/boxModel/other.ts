@@ -7,6 +7,9 @@ otherCommandsArray.push(
   createCommandBasic('objectCover', 'object-fit: cover'),
   createCommandBasic('relative', 'position: relative'),
   createCommandBasic('absolute', 'position: absolute'),
+  createCommandBasic('inline', 'display: inline'),
+  createCommandBasic('inlineBlock', 'display: inline-block'),
+  createCommandBasic('block', 'display: block'),
 
   createCommandSize('top', 'top'),
   createCommandSize('bottom', 'bottom'),
